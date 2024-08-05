@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: '幼圆', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ht {
+            text-align: center;
+            color: cadetblue;
+            font-family: '幼圆', sans-serif;
+        }
+
+        .tab {
+            width: 100%;
+            border: 5px solid cadetblue;
+            margin: 0 auto;
+            border-radius: 5px;
+            font-family: '幼圆', sans-serif;
+            background-color: #ffffff;
+        }
+
+        .ltr td {
+            border: 1px solid powderblue;
+            padding: 10px;
+        }
+
+        .ipt {
+            border: 1px solid #ddd;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        .btn1 {
+            border: 2px solid powderblue;
+            border-radius: 4px;
+            width: 100px;
+            background-color: antiquewhite;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn1:hover {
+            background-color: powderblue;
+            color: white;
+        }
+
+        .msg {
+            color: gold;
+            font-size: 12px;
+        }
+
+        .buttonContainer {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .buttonContainer a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .buttonContainer .btn1 {
+            display: inline-block;
+            margin: 0 10px;
+        }
+    </style>
+    <script>
+        function checkUsername(){
+            //定义规则
+            var usernameReg = /^[a-zA-Z0-9]{5,10}$/
+            //获取用户输入的信息
+            var usernameInput = document.getElementById("usernameInput")
+            var username = usernameInput.value
+            //获取格式提示框
+            var usernameMsg = document.getElementById("usernameMsg")
+            if(!usernameReg.test(username)){
+                usernameMsg.innerText="格式必须是6-10的字母或数字"
+                return false
+            }
+            usernameMsg.innerText="okk"
+            return true
+        }
+        function checkUserPwd(){
+            //定义规则
+            var  userPwdReg= /^[0-9]{6}$/
+            //获取用户输入的信息
+            var userPwdInput = document.getElementById("userPwdInput")
+            var userPwd = userPwdInput.value
+            //获取格式提示框
+            var userPwdMsg = document.getElementById("userPwdMsg")
+            if(!userPwdReg.test(userPwd)){
+                userPwdMsg.innerText="密码必须是6位的数字"
+                return false
+            }
+            userPwdMsg.innerText="okk"
+            return true
+        }
+        //表单在提交时，校验用户名和密码格式，都可以才提交
+        function checkForm(){
+            var flag1 = checkUsername();
+            var flag2 = checkUserPwd();
+            return flag1&&flag2
+
+        }
+    </script>
+ 
+</head>
+<body>
+<div class="container">
+    <h1 class="ht">欢迎使用日程管理系统</h1>
+    <h3 class="ht">请登录</h3>
+    <form method="post" action="/user/login" onsubmit="return checkForm()">
+        <table class="tab" cellspacing="0px">
+            <tr class="ltr">
+                <td>请输入账号</td>
+                <td>
+                    <input class="ipt" type="text" id="usernameInput" name="username" onblur="checkUsername()">
+                    <span id="usernameMsg" class="msg"></span>
+                </td>
+            </tr>
+            <tr class="ltr">
+                <td>请输入密码</td>
+                <td>
+                    <input class="ipt" type="password" id="userPwdInput"  name="userPwd" onblur="checkUserPwd()">
+                    <span id="userPwdMsg" class="msg"></span>
+                </td>
+            </tr>
+            <tr class="ltr">
+                <td colspan="2" class="buttonContainer">
+                    <input class="btn1" type="submit" value="登录">
+                    <input class="btn1" type="reset" value="重置">
+                    <button class="btn1"><a href="../../../atguiguall/project/regist.html">去注册</a></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>>
+</body>
+</html>
